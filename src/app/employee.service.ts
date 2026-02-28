@@ -9,7 +9,7 @@ import { Observable, of } from 'rxjs';
 })
 export class EmployeeService {
   httpData: any;
-  private apiUrl = "http://54.224.46.64:8080/emp-service/employees";
+  private apiUrl = "http://100.31.215.187:8080/emp-service/employees";
   constructor(private http: HttpClient) { }
   getEmployees(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
