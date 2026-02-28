@@ -1,0 +1,15 @@
+
+<table width="100%">
+	<tr>
+		<th>Id</th>
+		<th>Name</th>
+		<th>Department</th>
+		<th>Action</th>
+	</tr>
+	<tr *ngFor="let datas of e">
+		<td>{{datas.id}}</td>
+		<td>{{datas.name}}</td>
+		<td>{{datas.department}}</td>
+		<td>Edit | Delete</td>
+	</tr>
+</table>
