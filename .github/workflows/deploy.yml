@@ -16,31 +16,35 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 25
+          node-version: 18
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build Angular App
         run: npm run build -- --configuration production
 
-      - name: Deploy to EC2
+      #  Debug Step (temporary - remove after verifying once)
+      - name: Check dist folder structure
+        run: ls -R dist
+
+      - name: Prepare EC2 Directory
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            rm -rf /var/www/employee-ui/*
-            mkdir -p /var/www/employee-ui
-      
+            sudo rm -rf /var/www/employee-ui/*
+            sudo mkdir -p /var/www/employee-ui
+
       - name: Copy files to EC2
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "dist/employee-ui/*"
+          source: "dist/employee-ui/browser/*"
           target: "/var/www/employee-ui"
 
       - name: Restart Nginx
