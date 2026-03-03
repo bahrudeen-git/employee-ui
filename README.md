@@ -1,10 +1,22 @@
-# Employee
+# Employee Management UI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+This is an Angular-based employee management system featuring a clean UI built with Tailwind CSS. It includes lazy-loaded modules for **home**, **login**, and **dashboard** pages, and demonstrates basic authentication flow.
+
+The project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Install dependencies and start the development server:
+
+```bash
+npm install
+npm install -D tailwindcss postcss autoprefixer # if not already done
+npm run start
+```
+
+Then navigate to `http://localhost:4200/`. The application will automatically reload on changes.
+
+The home page is accessible at `/`, login at `/login` (use **admin/admin**), and the protected dashboard at `/dashboard`.
 
 ## Code scaffolding
 

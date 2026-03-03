@@ -1,9 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 
 const routes: Routes = [
-  {path: 'employee-ui', component: EmployeeDetailsComponent}
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
+  },
+  { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({
